@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Host, Input, Output } from '@angular/core';
+import { AppComponent } from '../app/app.component';
 
 @Component({
   selector: 'app-user',
@@ -8,12 +9,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class UserComponent {
   @Input('data') user: any;
 
-  @Output() borrarEvent = new EventEmitter<number>();
-
-  constructor() {}
+  constructor(@Host() private _app: AppComponent) {}
 
   borrarUser(id: number) {
     console.log('Usuario eliminado correctamente con ID: ' + id);
-    this.borrarEvent.emit(id);
+    this._app.usuarios = this._app.usuarios.filter(usuario => usuario.id != id);
   }
 }

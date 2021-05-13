@@ -16,8 +16,4 @@ export class AppComponent implements OnInit {
       .get('https://jsonplaceholder.typicode.com/users')
       .subscribe((datos: any[]) => (this.usuarios = datos));
   }
-
-  borrarUser(id: number) {
-    this.usuarios = this.usuarios.filter(usuario => usuario.id != id);
-  }
 }
